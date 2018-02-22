@@ -1,0 +1,1 @@
+echo "This is the message body and contains the message" | mailx -v -r "test1@netechtest.co.in" -s "This is the subject" -S smtp="192.168.5.137" -S smtp-auth=login -S smtp-auth-user="test1" -S smtp-auth-password="hello123" lcudnekar@netechgoa.co.in

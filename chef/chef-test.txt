@@ -1,0 +1,24 @@
+knife test: bundle exec knife cookbook test $COOKBOOK
+foodcritic: bundle exec foodcritic -I foodcritic/* cookbooks/$COOKBOOK
+#chefspec: bundle exec spec
+
+echo "##TEST######################"
+knife cookbook test oms-rflow
+echo "##Foodcentric######################"
+foodcritic -I foodcritic/* cookbooks/oms-rflow
+rubocop cookbooks/oms-rflow
+
+knife cookbook test oms-rflow ;echo "##Foodcentric######################" ; foodcritic -I foodcritic/* cookbooks/oms-rflow
+
+###############################
+]\s+=  
+] =
+
+#########################
+\s+=
+ =
+ 
+ #####################
+ #+
+ # 
+

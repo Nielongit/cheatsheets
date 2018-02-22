@@ -1,0 +1,9 @@
+sed -n '/21\/Jul\/2015:12:15:07/,/21\/Jul\/2015:12:15:12/p' access.log
+
+IP=192.168.5.131 ; echo "IP: $IP - $(date)"; echo -n "Port 20000 - Hits " ; cat access.log | grep $IP | grep 192.168.5.247:20000 | wc -l ; (echo -n "Port 27000 - Hits "; cat access.log | grep $IP | grep 192.168.5.247:27000 | wc -l;)
+
+
+IP=192.168.5.222 ; echo "IP: $IP - $(date)"; (echo -n "Port 8383 - Hits " ; cat access.log | grep $IP | grep 192.168.5.247:8383 | wc -l ;) (echo -n "Port 8394 - Hits "; cat access.log | grep $IP | grep 192.168.5.247:8394 | wc -l;)
+
+
+

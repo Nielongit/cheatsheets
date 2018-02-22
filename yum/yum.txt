@@ -1,0 +1,5 @@
+createrepo -s md5 ./SOAADP
+
+cp /var/lib/jenkins/jobs/SoaAdapter-pom/workspace/Webservice/target/rpm/RPMS/noarch/Webservice-0.0.1-39.noarch.rpm repo/
+cp /var/lib/jenkins/jobs/SoaAdapter-pom/workspace/AdapterGUI/target/rpm/RPMS/noarch/AdapterGUI-0.0.1-39.noarch.rpm repo/
+createrepo --update -s md5 repo

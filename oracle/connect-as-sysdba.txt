@@ -1,0 +1,3 @@
+How do I connect to the database to increase my processes parameter? Well I remember Tanel Poder blogged about "How to log on even when SYSDBA can't do so?"
+
+sqlplus -prelim "/as sysdba"

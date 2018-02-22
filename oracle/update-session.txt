@@ -1,0 +1,14 @@
+select name, value from v$parameter where name in ('processes', 'sessions', 'transactions')
+
+SQL> alter system set sessions = 430 scope = spfile;
+
+System altered.
+
+SQL> alter system set transactions = 478 scope = spfile;
+
+System altered.
+
+select USERNAME, SERVER, state from v$session;
+select count(*) from v$session;
+
+

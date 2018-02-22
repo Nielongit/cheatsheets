@@ -1,0 +1,19 @@
+cat /etc/passwd | grep jenkins
+jenkins:x:496:490:Jenkins Continuous Integration Server:/var/lib/jenkins:/bin/false
+
+cd /var/lib/jenkins/.ssh
+ls
+id_rsa  id_rsa.pub  known_hosts
+
+cat id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA2upWSxyPSZL5m6TWbEPtfJlHQQcF6Ld2UTIM0+Q2n2yVaLavjiC2DHAGPn4Ecnl3hRLJh20QyoUzs7biBsPKzOUC0LWJJrMMWbVpLvrhBgETxjLgXx6kwZ0+mwuFlWCTOI9WKk4Xg6Aa89O4+EZC8JYX90nLAQRe9RwF/r4sYGkf4o0L+KOZIzC5T5Y3bqQfvmUwDNW+NCNrKinkDEwE8XAk1hVzUBtR0B/xuo4JKIJXhbIaDrLcTDdHR0Qwa3s6aF9wOPs9uu8y3u6f9F7kY7cUwXSx4903LPj2aSsTyR0KusO6a3OibkuCSftsTf5bVxCjSe6biMmpyMzzpNhN8w== jenkins@realsteel
+
+su jenkins -s /bin/bash
+cd /tmp
+
+git -c core.askpass=true ls-remote -h ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git HEAD
+The authenticity of host '[git.nexgen.neustar.biz]:8022 ([50.112.140.88]:8022)' can't be established.
+RSA key fingerprint is 30:f1:34:a9:35:93:55:a3:87:d1:c3:77:36:7e:77:5a.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '[git.nexgen.neustar.biz]:8022,[50.112.140.88]:8022' (RSA) to the list of known hosts.
+bash-4.1$ 

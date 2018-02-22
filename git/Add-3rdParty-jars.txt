@@ -1,0 +1,45 @@
+2. Add it to the Neustar 3rd party jar Nexus repository
+
+Do these steps only If you have a 3rd party jar that DOES NOT reside in maven central or another internet-facing repository
+
+Then you can submit the jars through the project:
+
+https://git.nexgen.neustar.biz/neustar/repo-3rd-party-jars/tree/master
+
+Steps to take:
+
+    Clone the repository:
+    git clone ssh://git@git.nexgen.neustar.biz:8022/neustar/repo-3rd-party-jars.git
+
+    create a new branch based on master:
+    git checkout master
+    git pull
+    git checkout -b artifact-abc
+    git push -u origin artifact-abc
+
+    Add your jars to the ./lib directory in the repository
+
+    Edit 'install.sh' and add a line for your artifact
+
+    Upload the artifact:
+    git push
+    Create merge request
+
+        Go to https://git.nexgen.neustar.biz/neustar/repo-3rd-party-jars/merge_requests
+        Click on "+ New Merge Request" on the upper right
+        Select your new branch in the "Source branch"
+        select "master" in the "Target branch"
+        Click on "Compare"
+        write in the comment
+            where this jar is from
+            if it is a closed license: which team owns the license
+        Assign it to someone from the Automation & Tools team
+        "Submit merge request"
+    Do not email the person who got this ticket assigned in the next two days. We get automatically notified by email.
+    Wait till we follow up
+
+If you have questions, please create a ticket in the "Sonatype Nexus Coderepository support (NEXUS)"  board in JIRA
+
+ 
+
+After the changes are merged gitlab will automatically start a Jenkins job that will publish the artifacts. This job can be found at https://jenkins-denver.neustar.biz/job/automations-and-tools/job/Nexus-Third-Party-Jar-Uploader/

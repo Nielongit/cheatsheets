@@ -1,0 +1,15 @@
+###To enable user access to write to file
+
+USE mysql;
+UPDATE user SET File_priv = 'Y' WHERE User = 'db_user';
+FLUSH PRIVILEGES;
+
+select o.PON,o.VERSION FROM ORDER_INFO o INTO OUTFILE '/tmp/orders.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+
+SELECT se.username, ss.sid, ROUND (value/100) "CPU Usage" FROM v$session se, v$sesstat ss, v$statname st WHERE ss.statistic# = st.statistic#   AND name LIKE  '%CPU used by this session%'   AND se.sid = ss.SID   AND se.username IS NOT NULL ORDER BY value DESC;
+
+ mysql -utestndel -ptestndel asr600send select o.PON,o.VERSION FROM ORDER_INFO o INTO OUTFILE '/tmp/orders.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+ 
+  mysql -utestndel -ptestndel asr600send select o.PON,o.VERSION FROM ORDER_INFO o 
+  
+  mysql -uUser -pPassword your_database < my_requests.sql | awk 'BEGIN{OFS="=";} {print $1,$2}' > out.csv

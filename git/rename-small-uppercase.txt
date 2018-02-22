@@ -1,0 +1,67 @@
+git clone ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git
+ls -la
+git clone ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git
+ls
+cd TA-Management/
+ls
+git status
+git branch
+git branch -v -a
+git fetch origin
+git branch
+git checkout TA_JBOSS_ORACLE_610
+git branch
+git status
+ls
+cd ../
+ls
+mkdir TA-mod
+tar cvf - ./TA-Management | (cd TA-mod/ ; tar xvf -)
+cd TA-mod/
+ls
+git branch
+ls
+cd TA-Management/
+git branch
+ls
+cd ../
+cd TA-Management/
+ls
+ls -la
+find ./tpi | xargs ls -la
+ls ..
+cp -r tpi ../
+ls -la ../tpi/
+find ./tpi | xargs ls -la
+find ../tpi | xargs ls -la
+cd tpi
+ls
+cp CenturyLinkTPI/pom.xml ../TPI/CenturyLinkTPI/
+cp FrontierTPI/pom.xml ../TPI/FrontierTPI/
+cp VerizonTPI/pom.xml ../TPI/VerizonTPI/
+cd ..
+git rm -r tpi
+ls
+git status
+git add TPI/CenturyLinkTPI/pom.xml
+git add TPI/FrontierTPI/pom.xml
+git add TPI/VerizonTPI/pom.xml
+git status
+git commit -m 'Renamed tpi to TPI'
+git status
+git branch -v -a
+git push origin TA_JBOSS_ORACLE_610
+df -h
+cd /tmp
+ls
+mkdir cvs
+export CVS_RSH=ssh
+echo $CVS_RSH
+which cvs
+cvs -d :ext:cvsusr@192.168.5.25:/export/home/cvsusr/care co billing 
+ls
+ls -la
+rm billing/
+rm billing/ -rf
+cd cvs
+ls

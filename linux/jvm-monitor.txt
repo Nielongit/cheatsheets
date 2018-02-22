@@ -1,0 +1,51 @@
+#!/bin/bash
+pidfile="/opt/app/oms-tamsndapi/bin/sendapi.pid"
+logfile="/opt/app/logs/oms-tamsndapi/gcinfo.log"
+RUNAT="01"
+while true
+do
+    DATE=`/bin/date +%H`
+    echo Out date: $DATE
+    if [ $DATE. = $RUNAT. ]
+    then
+        echo date: $(date '+%H:%M')
+        if [ -f $pidfile ]; then
+           PIDN=$(cat "$pidfile")
+           echo "$(date '+%d-%m-%Y %H:%M:%S') PID: $PIDN"  >> $logfile
+           #which jcmd
+           jcmd  $PIDN GC.run
+        else
+           echo "$(date '+%d-%m-%Y %H:%M:%S'): Process not running" >> $logfile
+        fi
+    fi
+    sleep 1h
+done
+
+
+
+
+ -Xloggc:/opt/app/logs/oms-tamsndapi/gcinfo.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintReferenceGC -XX:+UseG1GC -XX:+PrintAdaptiveSizePolicy -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M 
+ 
+ 
+ cd /opt/app ; mkdir logs/jvm ; vi logs/jvm/jscript.sh
+
+sqlplus  'admin_icp_qa/admin_icp_qa123@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=stomcqadb4.va.neustar.com)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=icpdev1.neustar.com)))'
+
+sqlplus  'ESRCH_test/esrch_test@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=stomcqadb4.va.neustar.com)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=nfclqa2.neustar.com)))'
+  
+  
+sqlplus  'chbagtwy_test/chbagtwy_test@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=stomcqadb4.va.neustar.com)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=nfclqa2.neustar.com)))'
+
+sqlplus  'chesr_qa/chesr_qa123@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=stomcqadb4.va.neustar.com)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=nfclqa2.neustar.com)))'
+
+
+sqlplus  'admintool_qa/admintool_qa123@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=omsdb_dv_ds.neustar.biz)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=omsdsdev.neustar.com)))'
+
+sqlplus  'dsetadpdev/dsetadpdev@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=stosippvdb1.va.neustar.com)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=qawsperf.neustar.com)))'
+
+stosippvdb1.va.neustar.com:2115:qawsperf
+user=dsetadpdev
+password=dsetadpdev
+
+
+sqlplus  'tamdev/tamdev@(DESCRIPTION=(LOAD_BALANCE=YES)(FAILOVER=ON)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=omsdb_perf_tam.neustar.biz)(PORT=2115)))(CONNECT_DATA=(SERVICE_NAME=qawsperf.neustar.com)))

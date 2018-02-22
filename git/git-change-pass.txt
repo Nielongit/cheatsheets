@@ -1,0 +1,17 @@
+Start the console with this command:
+> gitlab-rails console production
+
+Next wait until the console has loaded. You will see something like this if everything is OK:
+Gitlab Rails Console
+
+Now there are multiple ways to find your user. In my case I know there was only one user and it had so it has ID 1. But you can also search for email or username.
+irb(main):001:0> u = User.where(id: 1).first
+
+Now lets change your password:
+> u.password = 'secret_pass'
+> u.password_confirmation = 'secret_pass'
+	
+Its important that you change both password and password_confirmation to make it work.
+Now lets save the changes.
+	
+> u.save!

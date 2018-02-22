@@ -1,0 +1,24 @@
+oradba01t[labdb01]-/home/oracle/>sqlplus -prelim "/as sysdba"
+
+
+1.    Login as sysdba
+    sqlplus / as sysdba
+   
+2. Check Current Setting of Parameters
+    sql> show parameter sessions
+    sql> show parameter processes
+    sql> show parameter transactions
+
+3.    If you are planning to increase "PROCESSES" parameter you should also plan to increase "sessions and "transactions" parameters
+    A basic formula for determining  these parameter values is as follows:
+   
+        processes=x
+        sessions=x*1.1+5
+        transactions=sessions*1.1
+       
+4.    These paramters can't be modified in memory. You have to modify the spfile only (scope=spfile) and bounce the instance.
+    sql> alter system set processes=500 scope=spfile;
+    sql> alter system set sessions=555 scope=spfile;
+    sql> alter system set transactions=610 scope=spfile;
+    sql> shutdown abort
+    sql> startup

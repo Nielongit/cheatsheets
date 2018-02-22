@@ -1,0 +1,117 @@
+route add 192.168.5.110 mask 255.255.255.255 192.168.5.1 metric 1
+route delete 192.168.5.110
+
+
+select sql_fulltext, buffer_gets, rows_processed, elapsed_time, first_load_time, last_active_time from v$sqlarea where parsing_schema_name = 'YOUR_DB_USERNAME'
+
+SELECT * FROM V$SQL V where first_load_time LIKE '2016-01-11%';
+
+SELECT * FROM V$SQL V where first_load_time LIKE '2015-05-04%';
+
+SELECT sql_fulltext, sql_id, sqltype, action FROM V$SQL V where first_load_time LIKE '2016-01-11%';
+
+
+SELECT a.username,  b.sql_fulltext FROM   v$session a ,v$sql b ON a.sql_id = b.sql_id; 
+
+SELECT a.username,  b.sql_fulltext FROM   v$session a ,v$sql b where a.sql_id = b.sql_id;
+SELECT a.username,  b.sql_fulltext FROM   v$session a ,v$sqlarea b where a.sql_id = b.sql_id;
+
+
+SELECT S.USERNAME, S.SID, S.SERIAL#, SQL_TEXT FROM   V$SESSION S,   V$SQLTEXT_WITH_NEWLINES T WHERE S.SQL_ID IS NOT NULL AND S.SQL_ID = T.SQL_ID ORDER BY S.SID,T.PIECE;
+
+
+select session1.sid ,session1.serial# ,session1.username ,session1.sql_id ,session1.sql_child_number ,optimizer_mode ,hash_value ,address ,sql_text from  v$sqlarea sqlarea  ,v$session session1 where  session1.sql_hash_value = sqlarea.hash_value and session1.sql_address = sqlarea.address and   session1.username is not null;
+
+
+select session1.sid ,session1.serial# ,session1.username ,address ,sql_text from  v$sqlarea sqlarea  ,v$session session1 where  session1.sql_hash_value = sqlarea.hash_value and session1.sql_address = sqlarea.address and   session1.username is not null;
+
+SQL> desc v$sql;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SQL_TEXT                                           VARCHAR2(1000)
+ SQL_FULLTEXT                                       CLOB
+ SQL_ID                                             VARCHAR2(13)
+ SHARABLE_MEM                                       NUMBER
+ PERSISTENT_MEM                                     NUMBER
+ RUNTIME_MEM                                        NUMBER
+ SORTS                                              NUMBER
+ LOADED_VERSIONS                                    NUMBER
+ OPEN_VERSIONS                                      NUMBER
+ USERS_OPENING                                      NUMBER
+ FETCHES                                            NUMBER
+ EXECUTIONS                                         NUMBER
+ PX_SERVERS_EXECUTIONS                              NUMBER
+ END_OF_FETCH_COUNT                                 NUMBER
+ USERS_EXECUTING                                    NUMBER
+ LOADS                                              NUMBER
+ FIRST_LOAD_TIME                                    VARCHAR2(19)
+ INVALIDATIONS                                      NUMBER
+ PARSE_CALLS                                        NUMBER
+ DISK_READS                                         NUMBER
+ DIRECT_WRITES                                      NUMBER
+ BUFFER_GETS                                        NUMBER
+ APPLICATION_WAIT_TIME                              NUMBER
+ CONCURRENCY_WAIT_TIME                              NUMBER
+ CLUSTER_WAIT_TIME                                  NUMBER
+ USER_IO_WAIT_TIME                                  NUMBER
+ PLSQL_EXEC_TIME                                    NUMBER
+ JAVA_EXEC_TIME                                     NUMBER
+ ROWS_PROCESSED                                     NUMBER
+ COMMAND_TYPE                                       NUMBER
+ OPTIMIZER_MODE                                     VARCHAR2(10)
+ OPTIMIZER_COST                                     NUMBER
+ OPTIMIZER_ENV                                      RAW(2000)
+ OPTIMIZER_ENV_HASH_VALUE                           NUMBER
+ PARSING_USER_ID                                    NUMBER
+ PARSING_SCHEMA_ID                                  NUMBER
+ PARSING_SCHEMA_NAME                                VARCHAR2(30)
+ KEPT_VERSIONS                                      NUMBER
+ ADDRESS                                            RAW(4)
+ TYPE_CHK_HEAP                                      RAW(4)
+ HASH_VALUE                                         NUMBER
+ OLD_HASH_VALUE                                     NUMBER
+ PLAN_HASH_VALUE                                    NUMBER
+ CHILD_NUMBER                                       NUMBER
+ SERVICE                                            VARCHAR2(64)
+ SERVICE_HASH                                       NUMBER
+ MODULE                                             VARCHAR2(64)
+ MODULE_HASH                                        NUMBER
+ ACTION                                             VARCHAR2(64)
+ ACTION_HASH                                        NUMBER
+ SERIALIZABLE_ABORTS                                NUMBER
+ OUTLINE_CATEGORY                                   VARCHAR2(64)
+ CPU_TIME                                           NUMBER
+ ELAPSED_TIME                                       NUMBER
+ OUTLINE_SID                                        NUMBER
+ CHILD_ADDRESS                                      RAW(4)
+ SQLTYPE                                            NUMBER
+ REMOTE                                             VARCHAR2(1)
+ OBJECT_STATUS                                      VARCHAR2(19)
+ LITERAL_HASH_VALUE                                 NUMBER
+ LAST_LOAD_TIME                                     VARCHAR2(19)
+ IS_OBSOLETE                                        VARCHAR2(1)
+ IS_BIND_SENSITIVE                                  VARCHAR2(1)
+ IS_BIND_AWARE                                      VARCHAR2(1)
+ IS_SHAREABLE                                       VARCHAR2(1)
+ CHILD_LATCH                                        NUMBER
+ SQL_PROFILE                                        VARCHAR2(64)
+ SQL_PATCH                                          VARCHAR2(30)
+ SQL_PLAN_BASELINE                                  VARCHAR2(30)
+ PROGRAM_ID                                         NUMBER
+ PROGRAM_LINE#                                      NUMBER
+ EXACT_MATCHING_SIGNATURE                           NUMBER
+ FORCE_MATCHING_SIGNATURE                           NUMBER
+ LAST_ACTIVE_TIME                                   DATE
+ BIND_DATA                                          RAW(2000)
+ TYPECHECK_MEM                                      NUMBER
+ IO_CELL_OFFLOAD_ELIGIBLE_BYTES                     NUMBER
+ IO_INTERCONNECT_BYTES                              NUMBER
+ PHYSICAL_READ_REQUESTS                             NUMBER
+ PHYSICAL_READ_BYTES                                NUMBER
+ PHYSICAL_WRITE_REQUESTS                            NUMBER
+ PHYSICAL_WRITE_BYTES                               NUMBER
+ OPTIMIZED_PHY_READ_REQUESTS                        NUMBER
+ LOCKED_TOTAL                                       NUMBER
+ PINNED_TOTAL                                       NUMBER
+ IO_CELL_UNCOMPRESSED_BYTES                         NUMBER
+ IO_CELL_OFFLOAD_RETURNED_BYTES                     NUMBER

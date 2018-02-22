@@ -1,0 +1,39 @@
+$ git clone --mirror ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/ASRAdapter.git
+$ git remote -v
+origin  ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/ASRAdapter.git (fetch)
+origin  ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/ASRAdapter.git (push)
+
+$ git remote set-url --push origin   http://saturn:8888/NETECH/ASRAdapter-mirror.git
+
+$ git remote -v
+origin  ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/ASRAdapter.git (fetch)
+origin  http://saturn:8888/NETECH/ASRAdapter-mirror.git (push)
+
+$ git fetch -p origin
+remote: Counting objects: 9, done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 9 (delta 4), reused 0 (delta 0)
+Unpacking objects: 100% (9/9), done.
+From ssh://git.nexgen.neustar.biz:8022/OMS-DSET/ASRAdapter
+   df7eab1..581edfe  ASRAdapter2.1 -> ASRAdapter2.1
+
+$ git push --mirror
+Username for 'http://saturn:8888': lindesh
+Password for 'http://lindesh@saturn:8888':
+Counting objects: 15719, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3785/3785), done.
+Writing objects: 100% (15719/15719), 132.56 MiB | 3.70 MiB/s, done.
+Total 15719 (delta 9370), reused 15706 (delta 9366)
+To http://saturn:8888/NETECH/ASRAdapter-mirror.git
+ * [new branch]      ASRAdapter2.0 -> ASRAdapter2.0
+ * [new branch]      ASRAdapter2.1 -> ASRAdapter2.1
+ * [new branch]      master -> master
+
+
+ 
+git clone --mirror ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git
+ git remote -v
+ git remote set-url --push origin   http://saturn:8888/NETECH/TA-Management-mirror.git
+ git fetch -p origin
+ git push --mirror

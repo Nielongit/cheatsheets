@@ -1,0 +1,30 @@
+If you don't already have a private/public key setup, generate one.
+
+    ssh-keygen -t rsa -b 2048 -C "jenkinuser@jenkinshost" -N ''
+
+Then add the public key id_rsa.pub to chefuser@clienthost's ~/.ssh/authorized_keys file.
+
+    ssh-copy-id chefuser@clienthost
+
+You may need to do this manually if you can't already login to clienthost with ssh.
+Clean up any traces of old clients (your error message indicates this might be an issue)
+
+    ssh-keygen -R clienthost
+
+Test the ssh connection, and accept the host key.
+
+    ssh chefuser@clienthost
+
+Now on clienthost, setup sudo so chefuser can run chef-client as root
+
+    visudo
+
+Then add the line (Your chef-client path might be different)
+
+    chefuser ALL=(ALL) NOPASSWD: /usr/local/bin/chef-client
+
+On jenkinshost, confirm ssh chefuser@clienthost sudo chef-client -v runs without password prompts.
+
+    $ ssh chefuser@clienthost sudo /usr/local/bin/chef-client -v
+    Chef: 11.16.0
+

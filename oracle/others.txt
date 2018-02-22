@@ -1,0 +1,34 @@
+select object_name, owner from all_objects where object_name ='SPERRORLOG';
+
+create table errorlog as select * from SPERRORLOG where 1=2;
+
+CREATE GLOBAL TEMPORARY TABLE my_sperrorlog ( username     VARCHAR(256), timestamp    TIMESTAMP, script       VARCHAR(1024), identifier   VARCHAR(256), message      CLOB, statement    CLOB ) ON COMMIT  PRESERVE ROWS;
+
+select sql_text, OBJECT_STATUS from v$sql where sql_text like '%sys.dual%' and sql_text not like '%v$sql%' and OBJECT_STATUS != 'VALID';
+
+select sql_id, SQL_CHILD_ADDRESS from V$SQL_MONITOR where status like '%ERROR%';
+
+select sql_text, OBJECT_STATUS from v$sql where sql_text not like '%v$sql%' and OBJECT_STATUS != 'VALID';
+
+select * from dba_hist_sqltext where sql_text like '%dual%'
+
+
+select sql_text, OBJECT_STATUS from v$sql where sql_text not like '%v$sql%' and sql_text like '%ASAP%';
+
+select sql_text, OBJECT_STATUS from v$sql where sql_text not like '%v$sql%' and sql_text like '%ASAP%' and sql_text like '%NEXTVAL%';;
+
+
+select sql_fulltext from   v$sql where  lower(sql_fulltext) like lower('%AUTHORS%'); 
+
+select sql_text, OBJECT_STATUS from v$sql where sql_text not like '%v$sql%' and sql_text like '%ASAP%' and sql_text like '%sequence%';
+
+select sql_text from dba_hist_sqltext where sql_text not like '%v$sql%' and sql_text like '%ASAP%' and sql_text like '%sequence%';
+
+select a.*,length(a.sql_text) From v$sqltext a where upper(sql_text) like '%CREATE TABLE%';
+
+select sql_text, piece from v$sqltext a where upper(sql_text) like '%SEQ%';
+
+sqlplus "ASAP/ASAP@(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = ( PROTOCOL = TCP)(HOST = 192.168.5.110)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = ASR6016)))"
+
+
+

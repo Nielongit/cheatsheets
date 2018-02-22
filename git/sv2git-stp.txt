@@ -1,0 +1,23 @@
+ Command line instructions
+Git global setup
+
+git config --global user.name "Cudnekar, Lindesh"
+git config --global user.email "lindesh.cudnekar@neustar.biz"
+
+Create a new repository
+
+mkdir TA-Management
+cd TA-Management
+git init
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git
+git push -u origin master
+
+Push an existing Git repository
+
+cd existing_git_repo
+git remote add origin ssh://git@git.nexgen.neustar.biz:8022/OMS-DSET/TA-Management.git
+git push -u origin master
+

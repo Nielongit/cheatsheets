@@ -1,0 +1,15 @@
+
+$ git status
+
+
+$ git pull
+$ git fetch origin
+$ git checkout branch2
+
+$ echo "hello" > aad1.txt
+$ git add aad1.txt
+$ git commit -m 'testsd'
+
+$ git push origin branch2
+$ git branch -v -a
+

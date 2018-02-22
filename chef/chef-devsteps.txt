@@ -1,0 +1,29 @@
+chef generate cookbook my_first_cookbook
+
+1)Berkshelf, a cookbook dependency manager;
+2)Foodcritic, a cookbook linting tool;
+3)ChefSpec, an unit testing tool;
+4)Test Kitchen, an integration testing tool.
+
+It’s a simple one, with only four tasks for 
+1)RuboCop, 
+2)FoodCritic, 
+3)ChefSpec and 
+4)Test Kitchen. 
+
+
+1) Statically validated with RuboCop and Foodcritic;
+2) Unit tested with ChefSpec;
+3) Integration tested with Test Kitchen and ServerSpec.
+
+
+1)
+Rubocop
+The Rakefile, which should be at the cookbook’s root directory (e.g. like metadata.rb), looks like this: http://www.infoq.com/articles/introduction-chef-development-process
+
+PS C:\chefdk\GIT\oms-dset-cookbooks\cookbooks\omssoa_adapter> chef exec rake
+
+2) Foodcritic
+copied foodcritic rules from https://github.com/etsy/foodcritic-rules 
+
+PS C:\chefdk\GIT\oms-dset-cookbooks> chef exec foodcritic -I foodcritic/* cookbooks/omssoa_adapter

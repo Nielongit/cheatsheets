@@ -1,0 +1,50 @@
+##Oracle CPU usage
+SELECT se.username, ss.sid, ROUND (value/100) "CPU Usage" FROM v$session se, v$sesstat ss, v$statname st WHERE ss.statistic# = st.statistic#   AND name LIKE  '%CPU used by this session%'   AND se.sid = ss.SID   AND se.username IS NOT NULL ORDER BY value DESC;
+
+#Active users
+select sid, to_char(logon_time,'MMDDYYYY:HH24:MI') logon_time, username, type, status, process, sql_address, sql_hash_value from v$session where username is not null
+
+COLUMN percent FORMAT 999.99 
+SELECT sid, to_char(start_time,'hh24:mi:ss') stime, message,( sofar/totalwork)* 100 percent FROM v$session_longops WHERE sofar/totalwork < 1
+
+###SID active
+select S.USERNAME, s.sid, s.osuser, t.sql_id, sql_text from v$sqltext_with_newlines t , V$SESSION s where t.address =s.sql_address and t.hash_value = s.sql_hash_value and s.status = 'ACTIVE' and s.username <> 'SYSTEM' order by s.sid,t.piece
+SELECT  * FROM    sys.dm_exec_requests requests WHERE   requests.session_id > 50 ORDER BY total_elapsed_time DESC
+SELECT l.Sql_Id FROM v$session s JOIN v$session_longops l ON l.sid = s.Sid AND l.Serial# = s.Serial# AND l.Start_Time >= s.Logon_Time WHERE s.Audsid = Sys_Context('USERENV', 'SESSIONID')
+
+#Running sql statements
+select sid ,username ,optimizer_mode ,hash_value ,address ,sql_text from v$sqlarea,v$session  where  sql_hash_value = hash_value and  sql_address = address;
+
+
+#Object locks
+SELECT B.Owner, B.Object_Name, A.Oracle_Username, A.OS_User_Name  FROM V$Locked_Object A, All_Objects B WHERE A.Object_ID = B.Object_ID
+
+select event,p1,p2,p3 from v$session_wait where wait_time=0 and event='enqueue';
+select * from v$lock where type='TX' and request>0;
+select * from v$lock where type='TX' and lmode>0;
+
+
+
+##ORACLE PLAN TABLE
+SQL> connect sys/pw as sysdba
+Connected.
+
+SQL> drop table plan_table purge;
+Table dropped. 
+
+SQL> @%ORACLE_HOME%/rdbms/admin/utlxplan.sql
+Table created. 
+
+SQL> CREATE PUBLIC SYNONYM plan_table FOR sys.plan_table;
+CREATE PUBLIC SYNONYM plan_table FOR sys.plan_table
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+SQL> drop public synonym plan_table;
+Synonym dropped.
+
+SQL> CREATE PUBLIC SYNONYM plan_table FOR sys.plan_table;
+Synonym created.
+
+SQL> GRANT ALL ON sys.plan_table TO public;
+Grant succeeded.

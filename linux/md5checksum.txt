@@ -1,0 +1,22 @@
+#!/bin/bash
+ECHO="echo -e"
+
+####Location of md5sum binary
+MD5SUM=md5sum
+####File containing list of MD5 checksum signatures
+MD5FILE=checklist.chk
+
+####Check md5 signatures in current directory
+function chkMD5SUM
+{
+   $ECHO "Starting check of file signatures from $MD5FILE ...." 
+   if $MD5SUM -c $MD5FILE ; then
+        $ECHO "All file Signatures OK"
+   else
+        $ECHO "MD5SUM Checksum FAILED"
+        exit
+   fi
+}
+
+####Run the check
+chkMD5SUM

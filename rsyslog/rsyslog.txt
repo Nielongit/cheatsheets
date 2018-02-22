@@ -1,0 +1,10 @@
+Step Two: Enable Rsyslog Daemon
+
+rsyslog daemon comes pre-installed on modern Linux distributions, but is not enabled by default. To enable rsyslog daemon to receive external messages, edit its configuration file located in /etc/rsyslog.conf.
+
+Once the file is opened for editing, search and uncomment the below two lines by removing the # sign from the beginning of lines.
+
+1
+2
+$ModLoad imudp 
+$UDPServerRun 514
